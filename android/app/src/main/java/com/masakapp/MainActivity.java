@@ -15,7 +15,6 @@ public class MainActivity extends ReactActivity {
     return "MasakApp";
   }
 
-  @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(null);
   }
