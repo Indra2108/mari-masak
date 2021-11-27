@@ -3,6 +3,8 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         flex: 1,
+        padding: '7%',
+        backgroundColor: 'white'
     },
     container2: {
         // flex: 1,
@@ -32,8 +34,8 @@ export default StyleSheet.create({
         borderRadius: 20,
         marginRight: '3%',
     },
-    nameCategory: {
-        fontFamily: 'Poppins-Light',
+    nameCategories: {
+        fontFamily: 'Poppins-SemiBold',
         color: 'white'
     },
     viewCategories: {
@@ -45,5 +47,26 @@ export default StyleSheet.create({
         marginLeft: '4.5%',
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    backgroundArticleCard: {
+        marginTop: '8.5%',
+        backgroundColor: 'white',
+    },
+    imageArticleCard: {
+        width: '100%',
+        height: 240,
+        borderRadius: 15,
+    },
+    titleArticleCard: {
+        padding: '5%',
+        fontFamily: 'Poppins-SemiBold',
+        fontSize: 20
+    },
+    backgroundInfoArticleCard: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
+    },
+    infoArticleCard: {
+        fontFamily: 'Poppins-Regular'
     }
 })
