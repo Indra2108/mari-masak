@@ -24,4 +24,25 @@ export default StyleSheet.create({
         fontFamily: 'Poppins-Light',
         // backgroundColor: 'red'
     },
+    backgroundArticleCard: {
+        marginTop: '8.5%',
+        backgroundColor: 'white',
+    },
+    imageArticleCard: {
+        width: '100%',
+        height: 240,
+        borderRadius: 15,
+    },
+    titleArticleCard: {
+        padding: '5%',
+        fontFamily: 'Poppins-SemiBold',
+        fontSize: 20
+    },
+    backgroundInfoArticleCard: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly'
+    },
+    infoArticleCard: {
+        fontFamily: 'Poppins-Regular'
+    }
 })

@@ -25,6 +25,23 @@ export default Search = () => {
     //     SearchQuery()
     // })
 
+    const ReceiptCard = () => {
+        return data.map((value, index) =>
+            <View style={styles.backgroundArticleCard} key={index}>
+                <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key })}>
+                    <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
+                    {/* {console.log('==> DATA IMAGE: ' + JSON.stringify(value.thumb))} */}
+                    <Text style={styles.titleArticleCard}>{value.title}</Text>
+                    <View style={styles.backgroundInfoArticleCard}>
+                        <Text style={styles.infoArticleCard}>{value.times}</Text>
+                        <Text style={styles.infoArticleCard}>{value.portion}</Text>
+                        <Text style={styles.infoArticleCard}>{value.dificulty}</Text>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.backgroundSearch}>
