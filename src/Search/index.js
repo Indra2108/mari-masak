@@ -44,15 +44,14 @@ export default Search = () => {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.backgroundSearch}>
+            <View style={styles.backgroundSearch}>
                 <Image source={lup} style={styles.lups} />
                 <TextInput
                     placeholder='Search'
                     style={styles.textSearch}
                     onChangeText={query => setQuery(query)}
                 />
-
-            </TouchableOpacity>
+            </View>
         </View>
     )
 }
