@@ -8,7 +8,7 @@ import styles from './styles';
 import lup from './assets/search.png';
 import pancake from './assets/pancake.jpg';
 
-export default Home = () => {
+export default Home = ({ navigation }) => {
     const [data, setData] = useState([])
     const [refreshing, setRefreshing] = useState(false);
 
@@ -57,29 +57,34 @@ export default Home = () => {
     const ReceiptCard = () => {
         return data.map((value, index) =>
             <View style={styles.backgroundArticleCard} key={index}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key })}>
                     <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
                     {/* {console.log('==> DATA IMAGE: ' + JSON.stringify(value.thumb))} */}
                     <Text style={styles.titleArticleCard}>{value.title}</Text>
                     <View style={styles.backgroundInfoArticleCard}>
-                        <Text style={styles.infoArticleCard}>{value.dificulty}</Text>
-                        <Text style={styles.infoArticleCard}>{value.portion}</Text>
                         <Text style={styles.infoArticleCard}>{value.times}</Text>
+                        <Text style={styles.infoArticleCard}>{value.portion}</Text>
+                        <Text style={styles.infoArticleCard}>{value.dificulty}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
         )
     }
+
     // { console.log('==> Successfully fetching data: ' + JSON.stringify(data)) }
     { console.log('==> Successfully fetching data: ' + data) }
+
     return (
         <View style={styles.container}>
+
             {console.log('==> render()')}
             {/* <View style={styles.container2}> */}
-            <TouchableOpacity style={styles.backgroundSearch}>
+
+            <TouchableOpacity style={styles.backgroundSearch} onPress={() => navigation.navigate('Search')}>
                 <Image source={lup} style={styles.lups} />
                 <Text style={styles.textSearch}>Search</Text>
             </TouchableOpacity>
+
             {/* </View> */}
 
             {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -114,7 +119,6 @@ export default Home = () => {
                     onRefresh={onRefresh}
                 />
             }>
-
                 <ReceiptCard />
             </ScrollView>
         </View >
