@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, Text, View } from 'react-native';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 // Import styles for styling
 import styles from './styles';
@@ -8,12 +8,16 @@ import styles from './styles';
 import lup from './assets/search.png';
 
 export default Home = () => {
-    return(
+
+    
+
+    return (
         <View style={styles.container}>
-            <View style={styles.backgroundSearch}>
-                <Image source={lup} style={styles.lups}/>
+            <TouchableOpacity style={styles.backgroundSearch}>
+                <Image source={lup} style={styles.lups} />
                 <Text style={styles.textSearch}>Search</Text>
-            </View>
+            </TouchableOpacity>
+
         </View>
     )
 }
