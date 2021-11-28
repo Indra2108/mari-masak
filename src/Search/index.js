@@ -24,19 +24,17 @@ export default Search = ({ navigation }) => {
     }
 
     useEffect(() => {
-        if (query !== '') {
+        if (query) {
 
-            setTimeout(() => {
+            // setTimeout(() => {
                 SearchQuery()
                 console.log('==> Fetching query...')
-            }, 2500)
+            // }, 2500)
 
-        } else {
+        } else if (query == '') {
             setData([])
             console.log('==> Fetching stopped')
         }
-
-        return null 
     }, [query])
 
     // const Mengcondition = () => {
@@ -52,7 +50,7 @@ export default Search = ({ navigation }) => {
         return data.map((value, index) =>
             <View style={styles.backgroundArticleCard} key={index}>
                 <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key })}>
-                    <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
+                    {/* <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} /> */}
                     {/* {console.log('==> DATA IMAGE: ' + JSON.stringify(value.thumb))} */}
                     <Text style={styles.titleArticleCard}>{value.title}</Text>
                     <View style={styles.backgroundInfoArticleCard}>
@@ -72,7 +70,9 @@ export default Search = ({ navigation }) => {
                 <TextInput
                     placeholder='Search'
                     style={styles.textSearch}
-                    onChangeText={query => setQuery(query)}
+                    // onChangeText={query => setQuery(query)}
+                    onChangeText={query => setTimeout(() => setQuery(query), 5000)}
+
                 />
 
                 {console.log('==> Query: ' + query)}
