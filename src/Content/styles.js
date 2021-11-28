@@ -19,7 +19,7 @@ export default StyleSheet.create({
     },
     backgroundImageHeaders: {
         height: '100%',
-        backgroundColor: 'black',
+        backgroundColor: '#94c656',
         padding: '3%',
         borderRadius: 10
     },
@@ -44,7 +44,7 @@ export default StyleSheet.create({
     },
     authorInfo: {
         fontFamily: 'Poppins-Light',
-        fontSize: 10,
+        fontSize: 11,
     },
     descriptions: {
         fontFamily: 'Poppins-Light',
@@ -58,7 +58,23 @@ export default StyleSheet.create({
     },
     infoMasak: {
         padding: '4%',
-        borderWidth: 1,
-        borderRadius: 5
+        // borderWidth: 1,
+        borderRadius: 8,
+        backgroundColor: '#94c656',
+        // borderColor: 'white'
+
+    },
+    textInfoMasak: {
+        fontFamily: 'Poppins-SemiBold',
+        color: 'white'
+    },
+    textNeedItems: {
+        fontFamily: 'Poppins-Bold',
+        fontSize: 14,
+        marginTop: '7%'
+    },
+    mainItems: {
+        width: 100,
+        height: 100
     }
 })
