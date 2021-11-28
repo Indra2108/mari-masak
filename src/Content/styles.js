@@ -81,9 +81,10 @@ export default StyleSheet.create({
 
     },
     infoMainItems: {
-        flexDirection: 'row', 
-        maxWidth: '27%', 
-        flexWrap: 'wrap'
+        flexDirection: 'row',
+        maxWidth: '27%',
+        flexWrap: 'wrap',
+        justifyContent: 'center'
     },
     imageMainItems: {
         width: 100,
@@ -94,6 +95,15 @@ export default StyleSheet.create({
         fontSize: 12,
         flexWrap: 'wrap',
         // marginTop: '7%'
+    },
+    backgroundItems: {
+        flexDirection: 'row',
+        paddingLeft: '5%'
+    },
+    textItems: {
+        fontFamily: 'Poppins-Light',
+        fontSize: 13,
+
     }
 
 })

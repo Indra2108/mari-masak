@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, ScrollView, View, TouchableOpacity, Text } from 'react-native';
 
 // Import styling
@@ -10,14 +10,56 @@ import back from './assets/back.png';
 import lovewhite from './assets/love.png';
 import lovered from './assets/heart.png';
 import sariwangi from './assets/sari-wangi-100x100.png';
+import { useRoute } from "@react-navigation/native";
 
 export default Content = ({ navigation }) => {
+    const [data, setData] = useState([]);
+    const route = useRoute();
+
+    useEffect(() => {
+        console.log('==> useEffect()')
+        Mengfetchdata()
+    }, [])
+
+    const Mengfetchdata = () => {
+        let { key } = route;
+        let keyparse = JSON.parse(key)
+        fetch(`https://masak-apa-tomorisakura.vercel.app/api/recipe/${keyparse}`)
+            .then(response => response.json())
+            .then(respon => {
+                console.log('==> Fetching data...');
+                setData(respon.results)
+                console.log(respon.results);
+            })
+            .catch(e => console.log(e))
+    }
+
+
+    // FUNCTION BELOW FOR RENDERING
 
     const SpecialItems = () => {
         return (
             <View style={styles.infoMainItems}>
                 <Image source={sariwangi} style={styles.imageMainItems} />
                 <Text style={styles.textMainItems}>SariWangi Milk Tea Caramel</Text>
+            </View>
+        )
+    }
+
+    const Items = () => {
+        return (
+            <View style={styles.backgroundItems}>
+                <Text style={styles.textItems}>{'\u2022'}  </Text>
+                <Text style={styles.textItems}>270 g tepung terigu serbaguna</Text>
+            </View>
+        )
+    }
+
+    const CaraMembuat = () => {
+        return (
+            <View style={styles.backgroundItems}>
+                <Text style={styles.textItems}>{'\u2022'}  </Text>
+                <Text style={styles.textItems}>1 Aduk rata terigu, gula kastor, susu bubuk, soda kue, garam, dan baking powder.</Text>
             </View>
         )
     }
@@ -46,17 +88,25 @@ export default Content = ({ navigation }) => {
                         </View>
                     </View>
 
-                    <Text style={styles.textNeedItems}>Bahan spesial yang dibutuhkan: </Text>
+                    <Text style={styles.textNeedItems}>Bahan spesial yang diperlukan: </Text>
 
                     <View style={styles.backgroundMainItems}>
                         <SpecialItems />
                     </View>
 
+                    <Text style={styles.textNeedItems}>Bahan bahan: </Text>
+
+                    <Items />
+
+                    <Text style={styles.textNeedItems}>Cara membuat: </Text>
+
+                    <CaraMembuat />
+
                 </View>
             </ScrollView>
 
             <View style={styles.headers}>
-                <TouchableOpacity onProgress={() => navigation.navigate.goBack()} style={styles.backgroundImageHeaders}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backgroundImageHeaders}>
                     <Image source={back} style={styles.backbutton} />
                 </TouchableOpacity>
 

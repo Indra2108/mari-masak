@@ -13,47 +13,59 @@ export default Search = ({ navigation }) => {
 
     const SearchQuery = async () => {
         let mengquery = await query
-        fetch(`https://masak-apa-tomorisakura.vercel.app/api/search/?q=${mengquery}`)
+        await fetch(`https://masak-apa-tomorisakura.vercel.app/api/search/?q=${mengquery}`)
             .then(response => response.json())
             .then(respon => {
                 console.log(respon.results);
-                setData(respon.results);
+
+                if (query.length == 0) {
+                    setData([])
+
+                } else {
+                    setData(respon.results);
+                }
+
             })
             .catch(e => console.log(e))
     }
 
     useEffect(() => {
-        if (query) {
+        if (query.length !== 0) {
 
             SearchQuery()
             console.log('==> Fetching query...')
 
-        } else if (query === '') {
-
+        } else {
+            setData([])
             console.log('==> Fetching stopped')
         }
-
-        return () => setData([])
 
     }, [query])
 
     const ReceiptCard = () => {
-        return data.map((value, index) =>
-            <View style={styles.backgroundArticleCard} key={index}>
-                <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key })}>
 
-                    <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
-                    {/* {console.log('==> DATA IMAGE: ' + JSON.stringify(value.thumb))} */}
-                    <Text style={styles.titleArticleCard}>{value.title}</Text>
-                    {/* <View style={styles.backgroundInfoArticleCard}>
-                        <Text style={styles.infoArticleCard}>{value.times}</Text>
-                        <Text style={styles.infoArticleCard}>{value.serving}</Text>
-                        <Text style={styles.infoArticleCard}>{value.difficulty}</Text>
-                    </View> */}
+        if (query.length != 0) {
+            {
+                return data.map((value, index) => (
+                    <View style={styles.backgroundArticleCard} key={index}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key })}>
 
-                </TouchableOpacity>
-            </View>
-        )
+                            <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
+                            {/* {console.log('==> DATA IMAGE: ' + JSON.stringify(value.thumb))} */}
+                            <Text style={styles.titleArticleCard}>{value.title}</Text>
+                            {/* <View style={styles.backgroundInfoArticleCard}>
+                            <Text style={styles.infoArticleCard}>{value.times}</Text>
+                            <Text style={styles.infoArticleCard}>{value.serving}</Text>
+                            <Text style={styles.infoArticleCard}>{value.difficulty}</Text>
+                        </View> */}
+
+                        </TouchableOpacity>
+                    </View>
+                ))
+            }
+        } else {
+            return <View><Text>Data Kosong </Text></View>
+        }
     }
 
     return (
