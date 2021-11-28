@@ -7,7 +7,7 @@ export default StyleSheet.create({
         backgroundColor: 'white'
     },
     backgroundSearch: {
-        padding: '3%',
+        paddingHorizontal: '5%',
         backgroundColor: '#f4f4f4',
         flexDirection: 'row',
         alignItems: 'center',
@@ -29,14 +29,21 @@ export default StyleSheet.create({
         backgroundColor: 'white',
     },
     imageArticleCard: {
+        // width: '100%',
+        // height: 240,
+        // borderRadius: 15,
+
         width: '100%',
-        height: 240,
-        borderRadius: 15,
+        height: 120,
+        borderRadius: 10,
     },
     titleArticleCard: {
-        padding: '5%',
+        // padding: '5%',
+        // fontFamily: 'Poppins-SemiBold',
+        // fontSize: 20,
+
         fontFamily: 'Poppins-SemiBold',
-        fontSize: 20
+        fontSize: 15,
     },
     backgroundInfoArticleCard: {
         flexDirection: 'row',
