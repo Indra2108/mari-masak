@@ -20,7 +20,6 @@ export default Search = ({ navigation }) => {
                 setData(respon.results);
             })
             .catch(e => console.log(e))
-
     }
 
     useEffect(() => {
@@ -35,13 +34,13 @@ export default Search = ({ navigation }) => {
         }
 
         return () => setData([])
+
     }, [query])
 
     const ReceiptCard = () => {
         return data.map((value, index) =>
             <View style={styles.backgroundArticleCard} key={index}>
                 <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key })}>
-                    {/* <TouchableOpacity onPress={() => navigation.navigate('Content')}> */}
 
                     <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
                     {/* {console.log('==> DATA IMAGE: ' + JSON.stringify(value.thumb))} */}
@@ -51,6 +50,7 @@ export default Search = ({ navigation }) => {
                         <Text style={styles.infoArticleCard}>{value.serving}</Text>
                         <Text style={styles.infoArticleCard}>{value.difficulty}</Text>
                     </View> */}
+
                 </TouchableOpacity>
             </View>
         )
@@ -67,7 +67,7 @@ export default Search = ({ navigation }) => {
                     onChangeText={query => setQuery(query)}
                 />
 
-                {console.log('==> Query: ' + typeof (query))}
+                {console.log('==> Query: ' + query)}
             </View>
             <ScrollView>
                 {console.log('==> empty? ' + !data.length)}
