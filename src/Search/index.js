@@ -10,8 +10,6 @@ import lup from './assets/search.png';
 export default Search = ({ navigation }) => {
     const [query, setQuery] = useState('');
     const [data, setData] = useState([]);
-    let [startfetch, setStartfetch] = useState(null);
-
 
     const SearchQuery = async () => {
         let mengquery = await query
@@ -28,10 +26,8 @@ export default Search = ({ navigation }) => {
     useEffect(() => {
         if (query) {
 
-            // setTimeout(() => {
             SearchQuery()
             console.log('==> Fetching query...')
-            // }, 2500)
 
         } else if (query === '') {
 
@@ -40,15 +36,6 @@ export default Search = ({ navigation }) => {
 
         return () => setData([])
     }, [query])
-
-    // const Mengcondition = () => {
-    //     if (query) {
-    //         // startfetch(true)
-    //         return <ReceiptCard />
-    //     } else {
-    //         setStartfetch(false)
-    //     }
-    // }
 
     const ReceiptCard = () => {
         return data.map((value, index) =>
@@ -78,14 +65,11 @@ export default Search = ({ navigation }) => {
                     placeholder='Search'
                     style={styles.textSearch}
                     onChangeText={query => setQuery(query)}
-                // onChangeText={query => setTimeout(() => setQuery(query), 5000)}
-
                 />
 
                 {console.log('==> Query: ' + typeof (query))}
             </View>
             <ScrollView>
-                {/* <Mengcondition /> */}
                 {console.log('==> empty? ' + !data.length)}
                 {!data.length ? null : <ReceiptCard />}
             </ScrollView>
