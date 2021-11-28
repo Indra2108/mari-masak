@@ -33,7 +33,7 @@ export default StyleSheet.create({
     },
     martabaks: {
         width: '100%',
-        height: '40%',
+        height: 440,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
 
@@ -73,8 +73,27 @@ export default StyleSheet.create({
         fontSize: 14,
         marginTop: '7%'
     },
-    mainItems: {
+    backgroundMainItems: {
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+
+    },
+    infoMainItems: {
+        flexDirection: 'row', 
+        maxWidth: '27%', 
+        flexWrap: 'wrap'
+    },
+    imageMainItems: {
         width: 100,
         height: 100
+    },
+    textMainItems: {
+        fontFamily: 'Poppins-Light',
+        fontSize: 12,
+        flexWrap: 'wrap',
+        // marginTop: '7%'
     }
+
 })
