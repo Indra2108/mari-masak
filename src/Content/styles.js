@@ -7,7 +7,6 @@ export default StyleSheet.create({
     },
     secondaryContainer: {
         padding: '5%',
-        // backgroundColor: 'red'
     },
     headers: {
         width: '100%',
@@ -36,7 +35,6 @@ export default StyleSheet.create({
         height: 440,
         borderBottomLeftRadius: 25,
         borderBottomRightRadius: 25,
-
     },
     titles: {
         fontFamily: 'Poppins-Bold',
@@ -58,11 +56,8 @@ export default StyleSheet.create({
     },
     infoMasak: {
         padding: '4%',
-        // borderWidth: 1,
         borderRadius: 8,
         backgroundColor: '#94c656',
-        // borderColor: 'white'
-
     },
     textInfoMasak: {
         fontFamily: 'Poppins-SemiBold',
@@ -78,7 +73,6 @@ export default StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap'
-
     },
     infoMainItems: {
         flexDirection: 'row',
@@ -94,7 +88,6 @@ export default StyleSheet.create({
         fontFamily: 'Poppins-Light',
         fontSize: 12,
         flexWrap: 'wrap',
-        // marginTop: '7%'
     },
     backgroundItems: {
         flexDirection: 'row',
@@ -103,7 +96,5 @@ export default StyleSheet.create({
     textItems: {
         fontFamily: 'Poppins-Light',
         fontSize: 13,
-
     }
-
 })

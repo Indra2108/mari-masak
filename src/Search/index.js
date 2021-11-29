@@ -82,7 +82,6 @@ export default Search = ({ navigation }) => {
                 {console.log('==> Query: ' + query)}
             </View>
             <ScrollView>
-                {console.log('==> empty? ' + !data.length)}
                 {!data.length ? null : <ReceiptCard />}
             </ScrollView>
         </View>
