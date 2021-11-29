@@ -16,9 +16,11 @@ import { useRoute } from "@react-navigation/native";
 
 export default Content = ({ navigation }) => {
     const [data, setData] = useState({});
+    const [author, setAuthor] = useState({});
     const [specialItems, setSpecialItems] = useState([]);
     const [items, setItems] = useState([]);
     const [caraMembuat, setCaraMembuat] = useState([]);
+    const [lovepress, setLovePress] = useState(false)
     const route = useRoute();
     const { key, image } = route.params;
 
@@ -34,19 +36,20 @@ export default Content = ({ navigation }) => {
 
         await fetch(`https://masak-apa-tomorisakura.vercel.app/api/recipe/${key}`)
             .then(response => response.json())
-            .then(respon => {
+            .then(async (respon) => {
                 console.log('==> Fetching data...');
-                setData(JSON.stringify(respon.results))
-                setSpecialItems(respon.results.needItem)
-                setItems(respon.results.ingredient)
-                setCaraMembuat(respon.results.step)
+                await setData(respon.results)
+                await setSpecialItems(respon.results.needItem)
+                await setItems(respon.results.ingredient)
+                await setCaraMembuat(respon.results.step)
+                await setAuthor(respon.results.author)
                 // console.log(respon.results)
             })
             .catch(e => console.log(e))
 
     }
 
-    // FUNCTION BELOW FOR RENDERING
+    // FUNCTION BELOW FOR RENDERING COMPONENT
 
     const SpecialItems = () => {
         return specialItems.map((value, index) =>
@@ -75,61 +78,93 @@ export default Content = ({ navigation }) => {
         )
     }
 
+    const MainRender = () => {
+
+        if (data.length == 0) {
+
+            return <View><Text>Loading...</Text></View>
+
+        } else {
+
+            return (
+
+                <View style={styles.mainContainer} >
+
+                    {console.log('==> render()')}
+
+                    <ScrollView>
+
+                        {console.log('==> data: ' + JSON.stringify(data))}
+
+                        {data.thumb == null ? <Image source={{ uri: image }} style={styles.martabaks} /> : <Image source={{ uri: data.thumb }} style={styles.martabaks} />}
+
+                        <View style={styles.secondaryContainer}>
+
+                            <Text style={styles.titles}>{data.title}</Text>
+
+                            {/* <Text style={styles.authorInfo}>{data.author.user === undefined ? null : 'Author: ' + data.author.user}    |     {data.author.datePublished === undefined ? null : 'Tanggal: ' + data.author.datePublished}</Text> */}
+
+                            <Text style={styles.authorInfo}>{author == undefined ? null : 'Penulis: ' + author.user}    |    {author == undefined ? null : 'Tanggal: ' + author.datePublished}</Text>
+
+                            {/* {console.log(JSON.parse() + ' ' + JSON.parse(data.author.datePublished))} */}
+
+                            <Text style={styles.descriptions}>{data.desc}</Text>
+
+                            <View style={styles.backgroundInfoMasak}>
+
+                                <View style={styles.infoMasak}>
+                                    <Text style={styles.textInfoMasak}>{data.servings}</Text>
+                                </View>
+
+                                <View style={styles.infoMasak}>
+                                    <Text style={styles.textInfoMasak}>{data.times}</Text>
+                                </View>
+
+                                <View style={styles.infoMasak}>
+                                    <Text style={styles.textInfoMasak}>{data.dificulty}</Text>
+                                </View>
+
+                            </View>
+
+                            <Text style={styles.textNeedItems}>Bahan spesial yang diperlukan: </Text>
+
+                            <View style={styles.backgroundMainItems}>
+                                <SpecialItems />
+                            </View>
+
+                            <Text style={styles.textNeedItems}>Bahan bahan: </Text>
+
+                            <Items />
+
+                            <Text style={styles.textNeedItems}>Cara membuat: </Text>
+
+                            <CaraMembuat />
+
+                        </View>
+
+                    </ScrollView >
+
+                    <View style={styles.headers}>
+                        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backgroundImageHeaders}>
+                            <Image source={back} style={styles.backbutton} />
+                        </TouchableOpacity>
+
+                        <TouchableOpacity style={styles.backgroundImageHeaders} onPress={() => lovepress ? setLovePress(false) : setLovePress(true)}>
+                            <Image source={lovepress ? lovered : lovewhite} style={styles.loves} />
+                        </TouchableOpacity>
+                    </View>
+
+                </View >
+
+            )
+
+        }
+
+    }
+
+    // return() BELOW IS LIKE render() IN CLASS COMPONENT
+
     return (
-        <View style={styles.mainContainer}>
-            {console.log('==> render()')}
-            <ScrollView>
-
-                {console.log('==> data: ' + JSON.stringify(data))}
-
-                {data.thumb == null ? <Image source={{ uri: image }} style={styles.martabaks} /> : <Image source={{ uri: data.thumb }} style={styles.martabaks} />}
-
-                <View style={styles.secondaryContainer}>
-                    <Text style={styles.titles}>{data.title}</Text>
-                    {/* <Text style={styles.authorInfo}>{data.author.user === undefined ? null : 'Author: ' + data.author.user}    |     {data.author.datePublished === undefined ? null : 'Tanggal: ' + data.author.datePublished}</Text> */}
-                    {console.log(JSON.parse(data.author.user) + ' ' + JSON.parse(data.author.datePublished))}
-                    <Text style={styles.descriptions}>{data.desc}</Text>
-                    <View style={styles.backgroundInfoMasak}>
-                        <View style={styles.infoMasak}>
-                            <Text style={styles.textInfoMasak}>{data.servings}</Text>
-                        </View>
-
-                        <View style={styles.infoMasak}>
-                            <Text style={styles.textInfoMasak}>{data.times}</Text>
-                        </View>
-
-                        <View style={styles.infoMasak}>
-                            <Text style={styles.textInfoMasak}>{data.dificulty}</Text>
-                        </View>
-                    </View>
-
-                    <Text style={styles.textNeedItems}>Bahan spesial yang diperlukan: </Text>
-
-                    <View style={styles.backgroundMainItems}>
-                        <SpecialItems />
-                    </View>
-
-                    <Text style={styles.textNeedItems}>Bahan bahan: </Text>
-
-                    <Items />
-
-                    <Text style={styles.textNeedItems}>Cara membuat: </Text>
-
-                    <CaraMembuat />
-
-                </View>
-            </ScrollView>
-
-            <View style={styles.headers}>
-                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backgroundImageHeaders}>
-                    <Image source={back} style={styles.backbutton} />
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.backgroundImageHeaders}>
-                    <Image source={lovewhite} style={styles.loves} />
-                </TouchableOpacity>
-            </View>
-
-        </View>
+        <MainRender />
     )
 }
