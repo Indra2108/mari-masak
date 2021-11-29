@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { Image, ScrollView, View, TouchableOpacity, Text } from 'react-native';
 
 // Import styling
@@ -10,81 +10,96 @@ import back from './assets/back.png';
 import lovewhite from './assets/love.png';
 import lovered from './assets/heart.png';
 import sariwangi from './assets/sari-wangi-100x100.png';
+
+// Import 3rd Party Library
 import { useRoute } from "@react-navigation/native";
 
 export default Content = ({ navigation }) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState({});
+    const [specialItems, setSpecialItems] = useState([]);
+    const [items, setItems] = useState([]);
+    const [caraMembuat, setCaraMembuat] = useState([]);
     const route = useRoute();
+    const { key, image } = route.params;
 
     useEffect(() => {
+
         console.log('==> useEffect()')
+
         Mengfetchdata()
+
     }, [])
 
-    const Mengfetchdata = () => {
-        let { key } = route;
-        let keyparse = JSON.parse(key)
-        fetch(`https://masak-apa-tomorisakura.vercel.app/api/recipe/${keyparse}`)
+    const Mengfetchdata = async () => {
+
+        await fetch(`https://masak-apa-tomorisakura.vercel.app/api/recipe/${key}`)
             .then(response => response.json())
             .then(respon => {
                 console.log('==> Fetching data...');
-                setData(respon.results)
-                console.log(respon.results);
+                setData(JSON.stringify(respon.results))
+                setSpecialItems(respon.results.needItem)
+                setItems(respon.results.ingredient)
+                setCaraMembuat(respon.results.step)
+                // console.log(respon.results)
             })
             .catch(e => console.log(e))
-    }
 
+    }
 
     // FUNCTION BELOW FOR RENDERING
 
     const SpecialItems = () => {
-        return (
-            <View style={styles.infoMainItems}>
-                <Image source={sariwangi} style={styles.imageMainItems} />
-                <Text style={styles.textMainItems}>SariWangi Milk Tea Caramel</Text>
+        return specialItems.map((value, index) =>
+            <View style={styles.infoMainItems} key={index}>
+                <Image source={{ uri: value.thumb_item }} style={styles.imageMainItems} />
+                <Text style={styles.textMainItems}>{value.item_name}</Text>
             </View>
         )
     }
 
     const Items = () => {
-        return (
-            <View style={styles.backgroundItems}>
+        return items.map((value, index) =>
+            <View style={styles.backgroundItems} key={index}>
                 <Text style={styles.textItems}>{'\u2022'}  </Text>
-                <Text style={styles.textItems}>270 g tepung terigu serbaguna</Text>
+                <Text style={styles.textItems}>{value}</Text>
             </View>
         )
     }
 
     const CaraMembuat = () => {
-        return (
-            <View style={styles.backgroundItems}>
+        return caraMembuat.map((value, index) =>
+            <View style={styles.backgroundItems} key={index}>
                 <Text style={styles.textItems}>{'\u2022'}  </Text>
-                <Text style={styles.textItems}>1 Aduk rata terigu, gula kastor, susu bubuk, soda kue, garam, dan baking powder.</Text>
+                <Text style={styles.textItems}>{value}</Text>
             </View>
         )
     }
 
     return (
         <View style={styles.mainContainer}>
-
+            {console.log('==> render()')}
             <ScrollView>
-                <Image source={martabak} style={styles.martabaks} />
+
+                {console.log('==> data: ' + JSON.stringify(data))}
+
+                {data.thumb == null ? <Image source={{ uri: image }} style={styles.martabaks} /> : <Image source={{ uri: data.thumb }} style={styles.martabaks} />}
 
                 <View style={styles.secondaryContainer}>
-                    <Text style={styles.titles}>Resep Martabak Manis Mini Topping Cokelat Karamel yang Lezat</Text>
-                    <Text style={styles.authorInfo}>Penulis: Rian Farisa    |    Tanggal: Oktober 13, 2021</Text>
-                    <Text style={styles.descriptions}>Sering pesan martabak manis lewat ojol (ojek online)? Supaya lebih hemat dan seru, sekarang kamu membuatnya sendiri di rumah, lho! Bikin versi mini supaya topping-nya bisa bervariasi menyesuaikan selera anggota keluarga di rumah. Sebelum membuat, kamu wajib mempunyai cetakan martabak mini yang banyak dijual dengan harga terjangkau. Bukan hanya untuk martabak mini, cetakan ini juga bisa digunakan untuk membuat kue lumpur, pancake, atau maklor (makaroni telur). Jadi tak perlu ragu untuk membeli alat ini bila kamu belum punya.Selain pilihan topping yang menggoda dari bahan berkualitas, kunci kelezatan martabak manis adalah pada adonan tepungnya. Tekstur adonan yang pas dan berongga dengan kandungan mentega atau margarin yang bikin adonan jadi gurih, licin, dan tidak lengket pada cetakan.Pastikan menggunakan api kecil setelah cetakan martabak panas supaya adonan martabak matang merata dan tidak gosong di bagian bawahnya. Tuangkan adonan pada setiap cetakannya dan masak hingga berpori atau berlubang. Taburi gula dan tutup. Setelah matang, keluarkan, dan taburi dengan topping kesukaanmu!Sudah siap mencobanya untuk snack seru akhir pekan bareng keluarga nonton di rumah? Yuk, kita belanja dulu! Jangan lupa untuk follow, like, dan jika ada pertanyaan atau ingin request resep, kamu bisa langsung bertanya di kolom komentar akun Instagram Masak Apa Hari Ini.</Text>
+                    <Text style={styles.titles}>{data.title}</Text>
+                    {/* <Text style={styles.authorInfo}>{data.author.user === undefined ? null : 'Author: ' + data.author.user}    |     {data.author.datePublished === undefined ? null : 'Tanggal: ' + data.author.datePublished}</Text> */}
+                    {console.log(JSON.parse(data.author.user) + ' ' + JSON.parse(data.author.datePublished))}
+                    <Text style={styles.descriptions}>{data.desc}</Text>
                     <View style={styles.backgroundInfoMasak}>
                         <View style={styles.infoMasak}>
-                            <Text style={styles.textInfoMasak}>6 Porsi</Text>
+                            <Text style={styles.textInfoMasak}>{data.servings}</Text>
                         </View>
 
                         <View style={styles.infoMasak}>
-                            <Text style={styles.textInfoMasak}>1jam</Text>
+                            <Text style={styles.textInfoMasak}>{data.times}</Text>
                         </View>
 
                         <View style={styles.infoMasak}>
-                            <Text style={styles.textInfoMasak}>Cukup rumit</Text>
+                            <Text style={styles.textInfoMasak}>{data.dificulty}</Text>
                         </View>
                     </View>
 

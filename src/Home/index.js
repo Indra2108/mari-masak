@@ -57,7 +57,7 @@ export default Home = ({ navigation }) => {
     const ReceiptCard = () => {
         return data.map((value, index) =>
             <View style={styles.backgroundArticleCard} key={index}>
-                <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key })}>
+                <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key, image: value.thumb })}>
                     <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
                     {/* {console.log('==> DATA IMAGE: ' + JSON.stringify(value.thumb))} */}
                     <Text style={styles.titleArticleCard}>{value.title}</Text>
