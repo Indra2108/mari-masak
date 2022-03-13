@@ -1,5 +1,12 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { Image, ScrollView, Text, TouchableOpacity, View, RefreshControl } from 'react-native';
+import {
+    Image,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
+    RefreshControl,
+} from 'react-native';
 
 // Import styles for styling
 import styles from './styles';
@@ -8,8 +15,11 @@ import styles from './styles';
 import lup from './assets/search.png';
 import pancake from './assets/pancake.jpg';
 
+//import 3rd party library
+import LottieView from 'lottie-react-native';
+
 export default Home = ({ navigation }) => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState(Array)
     const [refreshing, setRefreshing] = useState(false);
 
     // const Category = (props) => {
@@ -74,20 +84,21 @@ export default Home = ({ navigation }) => {
     // { console.log('==> Successfully fetching data: ' + JSON.stringify(data)) }
     { console.log('==> Successfully fetching data: ' + data) }
 
-    return (
-        <View style={styles.container}>
+    const MainRender = () => {
+        return (
+            <View style={styles.container}>
 
-            {console.log('==> render()')}
-            {/* <View style={styles.container2}> */}
+                {console.log('==> render()')}
+                {/* <View style={styles.container2}> */}
 
-            <TouchableOpacity style={styles.backgroundSearch} onPress={() => navigation.navigate('Search')}>
-                <Image source={lup} style={styles.lups} />
-                <Text style={styles.textSearch}>Search</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.backgroundSearch} onPress={() => navigation.navigate('Search')}>
+                    <Image source={lup} style={styles.lups} />
+                    <Text style={styles.textSearch}>Mau nyari resep apa hari ini?</Text>
+                </TouchableOpacity>
 
-            {/* </View> */}
+                {/* </View> */}
 
-            {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
+                {/* <View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>
                 <ScrollView horizontal contentContainerStyle={{ marginLeft: '3%' }}>
                     <Genre genre='Action' style={{ marginLeft: '10%' }} />
                     <Genre genre='Adventure' />
@@ -98,7 +109,7 @@ export default Home = ({ navigation }) => {
                 </ScrollView>
             </View> */}
 
-            {/* <View style={styles.viewCategories}>
+                {/* <View style={styles.viewCategories}>
                 <ScrollView horizontal contentContainerStyle={styles.scroolViewCategories}>
                 <ScrollView horizontal>
                 <Category nama='Dessert' />
@@ -113,14 +124,28 @@ export default Home = ({ navigation }) => {
                 <Category nama='Sarapan' />
                 </ScrollView>
             </View> */}
-            <ScrollView refreshControl={
-                <RefreshControl
-                    refreshing={refreshing}
-                    onRefresh={onRefresh}
-                />
-            }>
-                <ReceiptCard />
-            </ScrollView>
-        </View >
-    )
+                <ScrollView refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
+                }>
+                    <ReceiptCard />
+                </ScrollView>
+            </View >
+        )
+    }
+
+    const LoadingDisplay = () => {
+        return (
+            <View style={styles.containerLottie}>
+                <LottieView source={require('../../assets/animations/loadingresep.json')} autoPlay autoSize loop style={styles.lottie}/>
+                <Text style={styles.textLottie}>Sedang Memuat Resep...</Text>
+            </View>
+        )
+    }
+
+    return !data.length ? <LoadingDisplay /> : <MainRender />
+    // return <LoadingDisplay />
+
 }

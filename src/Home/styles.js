@@ -3,25 +3,46 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        padding: '7%',
-        backgroundColor: 'white'
+        paddingHorizontal: '5%',
+        paddingTop: '7%',
+        backgroundColor: '#94c656',
     },
     container2: {
         // flex: 1,
         padding: '7%',
     },
+    containerLottie: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#94c656',
+    },
+    lottie: {
+        marginBottom: '5%'
+    },
+    textLottie: {
+        color: 'white',
+        fontFamily: 'Poppins-Regular'
+    },
     backgroundSearch: {
         padding: '4%',
-        backgroundColor: '#f4f4f4',
+        backgroundColor: 'white',
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 10,
-        elevation: 5
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+        shadowOpacity: 0.34,
+        shadowRadius: 6.27,
+        elevation: 10,
     },
     lups: {
         width: '10%',
         height: '100%',
-        marginRight: '6%'
+        marginRight: '3.5%'
     },
     textSearch: {
         fontFamily: 'Poppins-Light',
@@ -49,8 +70,18 @@ export default StyleSheet.create({
         justifyContent: 'space-between',
     },
     backgroundArticleCard: {
-        marginTop: '8.5%',
+        marginTop: '5%',
+        marginBottom: '5%',
         backgroundColor: 'white',
+        borderRadius: 15,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.43,
+        shadowRadius: 9.51,
+        elevation: 10,
     },
     imageArticleCard: {
         width: '100%',
@@ -58,15 +89,19 @@ export default StyleSheet.create({
         borderRadius: 15,
     },
     titleArticleCard: {
-        padding: '5%',
+        paddingHorizontal: '5%',
+        paddingTop: '5%',
         fontFamily: 'Poppins-SemiBold',
-        fontSize: 20
+        fontSize: 20,
+        color: 'black'
     },
     backgroundInfoArticleCard: {
         flexDirection: 'row',
-        justifyContent: 'space-evenly'
+        justifyContent: 'space-evenly',
+        marginBottom: 5,
+        padding: '2%',
     },
     infoArticleCard: {
-        fontFamily: 'Poppins-Regular'
+        fontFamily: 'Poppins-Regular',
     }
 })
