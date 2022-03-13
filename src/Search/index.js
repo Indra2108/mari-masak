@@ -8,7 +8,7 @@ import styles from "./styles";
 import lup from './assets/search.png';
 
 export default Search = ({ navigation }) => {
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState(String);
     const [data, setData] = useState([]);
 
     const SearchQuery = async () => {
@@ -44,7 +44,7 @@ export default Search = ({ navigation }) => {
 
     const ReceiptCard = () => {
 
-        if (query.length != 0) {
+        if (query.length !== 0) {
             {
                 return data.map((value, index) => (
                     <View style={styles.backgroundArticleCard} key={index}>

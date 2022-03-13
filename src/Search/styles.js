@@ -3,8 +3,9 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         flex: 1,
-        padding: '7%',
-        backgroundColor: 'white'
+        paddingHorizontal: '5%',
+        paddingTop: '7%',
+        backgroundColor: '#94c656',
     },
     backgroundSearch: {
         paddingHorizontal: '5%',
@@ -12,7 +13,19 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 10,
-        elevation: 5
+        elevation: 5,
+        // position: 'absolute',
+        // top: '3%',
+        // right: '5%',
+        // left: '5%',
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.43,
+        shadowRadius: 9.51,
+        elevation: 10,
     },
     lups: {
         width: '10%',
@@ -25,8 +38,18 @@ export default StyleSheet.create({
         // backgroundColor: 'red'
     },
     backgroundArticleCard: {
-        marginTop: '8.5%',
+        marginTop: '5%',
+        marginBottom: '2%',
         backgroundColor: 'white',
+        borderRadius: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 7,
+        },
+        shadowOpacity: 0.43,
+        shadowRadius: 9.51,
+        elevation: 10,
     },
     imageArticleCard: {
         // width: '100%',
@@ -38,7 +61,8 @@ export default StyleSheet.create({
         borderRadius: 10,
     },
     titleArticleCard: {
-        // padding: '5%',
+        padding: '2.5%',
+        color: 'black',
         // fontFamily: 'Poppins-SemiBold',
         // fontSize: 20,
 
