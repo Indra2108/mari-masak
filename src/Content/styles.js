@@ -8,6 +8,19 @@ export default StyleSheet.create({
     secondaryContainer: {
         padding: '5%',
     },
+    thirdContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: 'white'
+    },
+    lottie: {
+        marginBottom: '5%'
+    },
+    textLottie: {
+        color: 'black',
+        fontFamily: 'Poppins-Regular'
+    },
     headers: {
         width: '100%',
         padding: '5%',
@@ -38,7 +51,8 @@ export default StyleSheet.create({
     },
     titles: {
         fontFamily: 'Poppins-Bold',
-        fontSize: 23
+        fontSize: 23,
+        color: 'black'
     },
     authorInfo: {
         fontFamily: 'Poppins-Light',
@@ -47,7 +61,8 @@ export default StyleSheet.create({
     descriptions: {
         fontFamily: 'Poppins-Light',
         fontSize: 14,
-        marginTop: '6%'
+        marginTop: '6%',
+        color: 'black'
     },
     backgroundInfoMasak: {
         justifyContent: 'space-evenly',
@@ -66,7 +81,8 @@ export default StyleSheet.create({
     textNeedItems: {
         fontFamily: 'Poppins-Bold',
         fontSize: 14,
-        marginTop: '7%'
+        marginTop: '7%',
+        color: 'black'
     },
     backgroundMainItems: {
         justifyContent: 'space-evenly',
@@ -78,7 +94,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         maxWidth: '27%',
         flexWrap: 'wrap',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     imageMainItems: {
         width: 100,
@@ -88,6 +104,7 @@ export default StyleSheet.create({
         fontFamily: 'Poppins-Light',
         fontSize: 12,
         flexWrap: 'wrap',
+        color: 'black'
     },
     backgroundItems: {
         flexDirection: 'row',
@@ -96,5 +113,6 @@ export default StyleSheet.create({
     textItems: {
         fontFamily: 'Poppins-Light',
         fontSize: 13,
+        color: 'black'
     }
 })
