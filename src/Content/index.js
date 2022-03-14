@@ -13,13 +13,14 @@ import sariwangi from './assets/sari-wangi-100x100.png';
 
 // Import 3rd Party Library
 import { useRoute } from "@react-navigation/native";
+import LottieView from 'lottie-react-native';
 
 export default Content = ({ navigation }) => {
-    const [data, setData] = useState({});
-    const [author, setAuthor] = useState({});
-    const [specialItems, setSpecialItems] = useState([]);
-    const [items, setItems] = useState([]);
-    const [caraMembuat, setCaraMembuat] = useState([]);
+    const [data, setData] = useState(Object);
+    const [author, setAuthor] = useState(Object);
+    const [specialItems, setSpecialItems] = useState(Array);
+    const [items, setItems] = useState(Array);
+    const [caraMembuat, setCaraMembuat] = useState(Array);
     const [lovepress, setLovePress] = useState(false)
     const route = useRoute();
     const { key, image } = route.params;
@@ -78,17 +79,25 @@ export default Content = ({ navigation }) => {
         )
     }
 
+    const Header = () => {
+        return (
+            <View style={styles.headers}>
+                <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backgroundImageHeaders}>
+                    <Image source={back} style={styles.backbutton} />
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.backgroundImageHeaders} onPress={() => lovepress ? setLovePress(false) : setLovePress(true)}>
+                    <Image source={lovepress ? lovered : lovewhite} style={styles.loves} />
+                </TouchableOpacity>
+            </View>
+        )
+    }
+
     const MainRender = () => {
-
-        if (data.length == 0) {
-
-            return <View><Text>Loading...</Text></View>
-
-        } else {
 
             return (
 
-                <View style={styles.mainContainer} >
+                <View style={styles.mainContainer}>
 
                     {console.log('==> render()')}
 
@@ -144,27 +153,27 @@ export default Content = ({ navigation }) => {
 
                     </ScrollView >
 
-                    <View style={styles.headers}>
-                        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backgroundImageHeaders}>
-                            <Image source={back} style={styles.backbutton} />
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.backgroundImageHeaders} onPress={() => lovepress ? setLovePress(false) : setLovePress(true)}>
-                            <Image source={lovepress ? lovered : lovewhite} style={styles.loves} />
-                        </TouchableOpacity>
-                    </View>
+                    <Header />
 
                 </View >
 
             )
 
-        }
+    }
 
+    const MengLoading = () => {
+        return (
+            <View style={styles.thirdContainer}>
+                <Header />
+                <LottieView source={require('../../assets/animations/loadingresep.json')} autoPlay autoSize loop style={styles.lottie} />
+                <Text style={styles.textLottie}>Sedang Memuat Konten...</Text>
+            </View>
+        )
     }
 
     // return() BELOW IS LIKE render() IN CLASS COMPONENT
 
-    return (
-        <MainRender />
-    )
+    return !items.length ? <MengLoading /> : <MainRender />
+    // return <MainRender />
+
 }
