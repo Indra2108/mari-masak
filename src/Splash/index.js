@@ -9,7 +9,7 @@ export default Splash = ({ navigation }) => {
     useEffect(() => {
         setTimeout(() => {
             navigation.replace('Home')
-        }, 2000)
+        }, 3000)
     }, [])
 
     return (
