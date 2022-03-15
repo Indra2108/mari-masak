@@ -5,7 +5,7 @@ export default StyleSheet.create({
         flex: 1,
         paddingHorizontal: '5%',
         paddingTop: '7%',
-        backgroundColor: '#94c656',
+        backgroundColor: '#FEFFDE',
     },
     container2: {
         // flex: 1,
@@ -26,7 +26,7 @@ export default StyleSheet.create({
     },
     backgroundSearch: {
         padding: '4%',
-        backgroundColor: 'white',
+        backgroundColor: '#94c656',
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 10,
@@ -40,13 +40,14 @@ export default StyleSheet.create({
         elevation: 10,
     },
     lups: {
-        width: '10%',
-        height: '100%',
+        width: '8%',
+        height: '90%',
         marginRight: '3.5%'
     },
     textSearch: {
         fontFamily: 'Poppins-Light',
-        fontSize: 16
+        fontSize: 16,
+        color: '#FEFFDE'
     },
     backgroundCategory: {
         paddingHorizontal: '8%',
@@ -72,7 +73,7 @@ export default StyleSheet.create({
     backgroundArticleCard: {
         marginTop: '5%',
         marginBottom: '5%',
-        backgroundColor: 'white',
+        backgroundColor: '#94c656',
         borderRadius: 15,
         shadowColor: "#000",
         shadowOffset: {
@@ -86,14 +87,15 @@ export default StyleSheet.create({
     imageArticleCard: {
         width: '100%',
         height: 240,
-        borderRadius: 15,
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15
     },
     titleArticleCard: {
         paddingHorizontal: '5%',
         paddingTop: '5%',
         fontFamily: 'Poppins-SemiBold',
         fontSize: 20,
-        color: 'black'
+        color: '#FEFFDE'
     },
     backgroundInfoArticleCard: {
         flexDirection: 'row',
@@ -103,5 +105,6 @@ export default StyleSheet.create({
     },
     infoArticleCard: {
         fontFamily: 'Poppins-Regular',
+        color: '#FEFFDE'
     }
 })

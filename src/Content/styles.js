@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     mainContainer: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: '#FEFFDE'
     },
     secondaryContainer: {
         padding: '5%',
@@ -12,7 +12,7 @@ export default StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'white'
+        backgroundColor: '#FEFFDE'
     },
     lottie: {
         marginBottom: '5%'

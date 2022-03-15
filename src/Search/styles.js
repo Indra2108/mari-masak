@@ -5,11 +5,11 @@ export default StyleSheet.create({
         flex: 1,
         paddingHorizontal: '5%',
         paddingTop: '7%',
-        backgroundColor: '#94c656',
+        backgroundColor: '#FEFFDE',
     },
     backgroundSearch: {
         paddingHorizontal: '5%',
-        backgroundColor: '#f4f4f4',
+        backgroundColor: '#94c656',
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 10,
@@ -28,19 +28,20 @@ export default StyleSheet.create({
         elevation: 10,
     },
     lups: {
-        width: '10%',
-        height: '65%',
+        width: '9%',
+        height: '55%',
         marginRight: '4%'
     },
     textSearch: {
         width: '80%',
         fontFamily: 'Poppins-Light',
         // backgroundColor: 'red'
+        color: '#FEFFDE'
     },
     backgroundArticleCard: {
         marginTop: '5%',
         marginBottom: '2%',
-        backgroundColor: 'white',
+        backgroundColor: '#94c656',
         borderRadius: 10,
         shadowColor: "#000",
         shadowOffset: {
@@ -62,7 +63,7 @@ export default StyleSheet.create({
     },
     titleArticleCard: {
         padding: '2.5%',
-        color: 'black',
+        color: '#FEFFDE',
         // fontFamily: 'Poppins-SemiBold',
         // fontSize: 20,
 
