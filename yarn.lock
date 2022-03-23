@@ -2061,6 +2061,7 @@ __metadata:
     react-native: ^0.66.3
     react-native-safe-area-context: ^3.3.2
     react-native-screens: ^3.9.0
+    react-native-vector-icons: ^9.1.0
     react-test-renderer: 17.0.2
   languageName: unknown
   linkType: soft
@@ -7807,6 +7808,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-vector-icons@npm:^9.1.0":
+  version: 9.1.0
+  resolution: "react-native-vector-icons@npm:9.1.0"
+  dependencies:
+    prop-types: ^15.7.2
+    yargs: ^16.1.1
+  bin:
+    fa5-upgrade: bin/fa5-upgrade.sh
+    generate-icon: bin/generate-icon.js
+  checksum: 1c3d2199a84af35db0991a863733568c731e24500a8a2625709c0132dafc1c01f58a5e70f6a16d776aa8ffeebb2f98fd540a2693971e0145b7cfd03d84c2b942
+  languageName: node
+  linkType: hard
+
 "react-native@npm:^0.66.3":
   version: 0.66.4
   resolution: "react-native@npm:0.66.4"
@@ -9741,7 +9755,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yargs@npm:^16.2.0":
+"yargs@npm:^16.1.1, yargs@npm:^16.2.0":
   version: 16.2.0
   resolution: "yargs@npm:16.2.0"
   dependencies:
