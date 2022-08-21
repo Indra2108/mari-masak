@@ -8,4 +8,8 @@ Unofficial app Masak Apa Hari Ini? written in React Native
   - Dec 04 - First Release v1.0!
   - Nov 26 - First Commit
 
+## Planned Feature
+- [ ] Replace AsyncStorage to mrousavy MMKV Storage
+- [ ] Replace Built-in FlatList to Shopify FlashList
+
 Need Performance Tips? [here](optimizeTips.md)
