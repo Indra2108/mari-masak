@@ -8,7 +8,7 @@ export default Splash = ({ navigation }) => {
 
     useEffect(() => {
         setTimeout(() => {
-            navigation.replace('Home')
+            navigation.replace('HomeBottomTab')
         }, 3000)
     }, [])
 

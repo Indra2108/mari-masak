@@ -7,6 +7,18 @@ export default StyleSheet.create({
         paddingTop: '7%',
         backgroundColor: '#FEFFDE',
     },
+    containerLottie: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        // backgroundColor: '#94c656',
+    },
+    lottie: {
+        marginBottom: '5%'
+    },
+    textLottie: {
+        color: 'white',
+        fontFamily: 'Poppins-Regular'
+    },
     backgroundSearch: {
         paddingHorizontal: '5%',
         backgroundColor: '#94c656',
