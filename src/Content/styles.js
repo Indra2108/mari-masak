@@ -57,6 +57,7 @@ export default StyleSheet.create({
     authorInfo: {
         fontFamily: 'Poppins-Light',
         fontSize: 11,
+        color: 'black'
     },
     descriptions: {
         fontFamily: 'Poppins-Light',

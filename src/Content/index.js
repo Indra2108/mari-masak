@@ -5,11 +5,11 @@ import { Image, ScrollView, View, TouchableOpacity, Text } from 'react-native';
 import styles from "./styles";
 
 // Import images
-import martabak from './assets/martabak-780x440.jpg';
+// import martabak from './assets/martabak-780x440.jpg';
 import back from './assets/back.png';
 import lovewhite from './assets/love.png';
 import lovered from './assets/heart.png';
-import sariwangi from './assets/sari-wangi-100x100.png';
+// import sariwangi from './assets/sari-wangi-100x100.png';
 
 // Import 3rd Party Library
 import { useRoute } from "@react-navigation/native";
@@ -37,13 +37,13 @@ export default Content = ({ navigation }) => {
 
         await fetch(`https://masak-apa-tomorisakura.vercel.app/api/recipe/${key}`)
             .then(response => response.json())
-            .then(async (respon) => {
+            .then((respon) => {
                 console.log('==> Fetching data...');
-                await setData(respon.results)
-                await setSpecialItems(respon.results.needItem)
-                await setItems(respon.results.ingredient)
-                await setCaraMembuat(respon.results.step)
-                await setAuthor(respon.results.author)
+                setData(respon.results)
+                setSpecialItems(respon.results.needItem)
+                setItems(respon.results.ingredient)
+                setCaraMembuat(respon.results.step)
+                setAuthor(respon.results.author)
                 // console.log(respon.results)
             })
             .catch(e => console.log(e))
@@ -95,69 +95,69 @@ export default Content = ({ navigation }) => {
 
     const MainRender = () => {
 
-            return (
+        return (
 
-                <View style={styles.mainContainer}>
+            <View style={styles.mainContainer}>
 
-                    {console.log('==> render()')}
+                {console.log('==> render()')}
 
-                    <ScrollView>
+                <ScrollView>
 
-                        {console.log('==> data: ' + JSON.stringify(data))}
+                    {console.log('==> data: ' + JSON.stringify(data))}
 
-                        {data.thumb == null ? <Image source={{ uri: image }} style={styles.martabaks} /> : <Image source={{ uri: data.thumb }} style={styles.martabaks} />}
+                    {data.thumb == null ? <Image source={{ uri: image }} style={styles.martabaks} /> : <Image source={{ uri: data.thumb }} style={styles.martabaks} />}
 
-                        <View style={styles.secondaryContainer}>
+                    <View style={styles.secondaryContainer}>
 
-                            <Text style={styles.titles}>{data.title}</Text>
+                        <Text style={styles.titles}>{data.title}</Text>
 
-                            {/* <Text style={styles.authorInfo}>{data.author.user === undefined ? null : 'Author: ' + data.author.user}    |     {data.author.datePublished === undefined ? null : 'Tanggal: ' + data.author.datePublished}</Text> */}
+                        {/* <Text style={styles.authorInfo}>{data.author.user === undefined ? null : 'Author: ' + data.author.user}    |     {data.author.datePublished === undefined ? null : 'Tanggal: ' + data.author.datePublished}</Text> */}
 
-                            <Text style={styles.authorInfo}>{author == undefined ? null : 'Penulis: ' + author.user}    |    {author == undefined ? null : 'Tanggal: ' + author.datePublished}</Text>
+                        <Text style={styles.authorInfo}>{author && 'Penulis: ' + author.user}    |    {author && 'Tanggal: ' + author.datePublished}</Text>
 
-                            {/* {console.log(JSON.parse() + ' ' + JSON.parse(data.author.datePublished))} */}
+                        {/* {console.log(JSON.parse() + ' ' + JSON.parse(data.author.datePublished))} */}
 
-                            <Text style={styles.descriptions}>{data.desc}</Text>
+                        <Text style={styles.descriptions}>{data.desc}</Text>
 
-                            <View style={styles.backgroundInfoMasak}>
+                        <View style={styles.backgroundInfoMasak}>
 
-                                <View style={styles.infoMasak}>
-                                    <Text style={styles.textInfoMasak}>{data.servings}</Text>
-                                </View>
+                            {data.servings && <View style={styles.infoMasak}>
+                                <Text style={styles.textInfoMasak}>{data.servings}</Text>
+                            </View>}
 
-                                <View style={styles.infoMasak}>
-                                    <Text style={styles.textInfoMasak}>{data.times}</Text>
-                                </View>
+                            {data.times && <View style={styles.infoMasak}>
+                                <Text style={styles.textInfoMasak}>{data.times}</Text>
+                            </View>}
 
-                                <View style={styles.infoMasak}>
-                                    <Text style={styles.textInfoMasak}>{data.dificulty}</Text>
-                                </View>
-
-                            </View>
-
-                            <Text style={styles.textNeedItems}>Bahan spesial yang diperlukan: </Text>
-
-                            <View style={styles.backgroundMainItems}>
-                                <SpecialItems />
-                            </View>
-
-                            <Text style={styles.textNeedItems}>Bahan bahan: </Text>
-
-                            <Items />
-
-                            <Text style={styles.textNeedItems}>Cara membuat: </Text>
-
-                            <CaraMembuat />
+                            {data.difficulty && <View style={styles.infoMasak}>
+                                <Text style={styles.textInfoMasak}>{data.difficulty}</Text>
+                            </View>}
 
                         </View>
 
-                    </ScrollView >
+                        <Text style={styles.textNeedItems}>Bahan spesial yang diperlukan: </Text>
 
-                    <Header />
+                        <View style={styles.backgroundMainItems}>
+                            <SpecialItems />
+                        </View>
 
-                </View >
+                        <Text style={styles.textNeedItems}>Bahan bahan: </Text>
 
-            )
+                        <Items />
+
+                        <Text style={styles.textNeedItems}>Cara membuat: </Text>
+
+                        <CaraMembuat />
+
+                    </View>
+
+                </ScrollView >
+
+                <Header />
+
+            </View >
+
+        )
 
     }
 

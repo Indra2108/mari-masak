@@ -63,8 +63,8 @@ export default ContentArticle = ({ navigation }) => {
                     <Text style={styles.titleArticleCard}>{value.title}</Text>
                     <View style={styles.backgroundInfoArticleCard}>
                         <Text style={styles.infoArticleCard}>{value.times}</Text>
-                        <Text style={styles.infoArticleCard}>{value.portion}</Text>
-                        <Text style={styles.infoArticleCard}>{value.dificulty}</Text>
+                        <Text style={styles.infoArticleCard}>{value.serving}</Text>
+                        <Text style={styles.infoArticleCard}>{value.difficulty}</Text>
                     </View>
                 </TouchableOpacity>
             </View>
