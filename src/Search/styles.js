@@ -40,8 +40,8 @@ export default StyleSheet.create({
         elevation: 10,
     },
     lups: {
-        width: '9%',
-        height: '55%',
+        width: '8%',
+        height: '40%',
         marginRight: '4%'
     },
     textSearch: {

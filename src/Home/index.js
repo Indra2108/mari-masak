@@ -13,14 +13,16 @@ import styles from './styles';
 
 // Import image
 import lup from './assets/search.png';
-import pancake from './assets/pancake.jpg';
+// import pancake from './assets/pancake.jpg';
 
 //import 3rd party library
 import LottieView from 'lottie-react-native';
+import { FlashList } from "@shopify/flash-list";
 
 export default Home = ({ navigation }) => {
     const [data, setData] = useState(Array)
     const [refreshing, setRefreshing] = useState(false);
+
 
     useEffect(() => {
         console.log('==> useEffect()')
@@ -48,18 +50,24 @@ export default Home = ({ navigation }) => {
     }
 
     const ReceiptCard = () => {
-        return data.map((value, index) =>
-            <View style={styles.backgroundArticleCard} key={index}>
-                <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key, image: value.thumb })}>
-                    <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
-                    <Text style={styles.titleArticleCard}>{value.title}</Text>
-                    <View style={styles.backgroundInfoArticleCard}>
-                        {value.times && <Text style={styles.infoArticleCard}>{value.times}</Text>}
-                        {value.serving && <Text style={styles.infoArticleCard}>{value.serving}</Text>}
-                        {value.difficulty && <Text style={styles.infoArticleCard}>{value.difficulty}</Text>}
+        return (
+            <FlashList
+                data={data}
+                renderItem={({ item }) => (
+                    <View style={styles.backgroundArticleCard}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Content', { key: item.key, image: item.thumb })}>
+                            <Image source={{ uri: item.thumb }} style={styles.imageArticleCard} />
+                            <Text style={styles.titleArticleCard}>{item.title}</Text>
+                            <View style={styles.backgroundInfoArticleCard}>
+                                {item.times && <Text style={styles.infoArticleCard}>{item.times}</Text>}
+                                {item.serving && <Text style={styles.infoArticleCard}>{item.serving}</Text>}
+                                {item.difficulty && <Text style={styles.infoArticleCard}>{item.difficulty}</Text>}
+                            </View>
+                        </TouchableOpacity>
                     </View>
-                </TouchableOpacity>
-            </View>
+                )}
+                estimatedItemSize={20}
+            />
         )
     }
 
@@ -76,14 +84,8 @@ export default Home = ({ navigation }) => {
                     <Text style={styles.textSearch}>Mau nyari resep apa hari ini?</Text>
                 </TouchableOpacity>
 
-                <ScrollView refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }>
-                    <ReceiptCard />
-                </ScrollView>
+                <ReceiptCard />
+
             </View >
         )
     }

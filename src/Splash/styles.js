@@ -8,7 +8,7 @@ export default StyleSheet.create({
         backgroundColor: '#94c656',
     },
     image: {
-        width: '83%',
+        width: '85%',
         height: '44%',
         marginBottom: '5%'
     }

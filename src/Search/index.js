@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { View, TouchableOpacity, Image, Text, TextInput, ScrollView } from 'react-native';
+import React, { useState } from "react";
+import { View, TouchableOpacity, Image, Text, TextInput } from 'react-native';
 
 // Import styles
 import styles from "./styles";
@@ -9,6 +9,7 @@ import lup from './assets/search.png';
 
 //import 3rd party library
 import LottieView from 'lottie-react-native';
+import { FlashList } from "@shopify/flash-list";
 
 export default Search = ({ navigation }) => {
     const [query, setQuery] = useState('');
@@ -30,30 +31,27 @@ export default Search = ({ navigation }) => {
     const ReceiptCard = () => {
 
         if (query.length !== 0) {
-            {
-                return data.map((value, index) => (
-                    
-                        <View style={styles.backgroundArticleCard} key={index}>
-                            <TouchableOpacity onPress={() => navigation.navigate('Content', { key: value.key, image: value.thumb })}>
+            return (
+                <FlashList
+                    data={data}
+                    renderItem={({ item }) => (
+                        <View style={styles.backgroundArticleCard}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Content', { key: item.key, image: item.thumb })}>
 
-                                <Image source={{ uri: value.thumb }} style={styles.imageArticleCard} />
-                                {/* {console.log('==> DATA IMAGE: ' + JSON.stringify(value.thumb))} */}
-                                <Text style={styles.titleArticleCard}>{value.title}</Text>
-                                {/* <View style={styles.backgroundInfoArticleCard}>
-                            <Text style={styles.infoArticleCard}>{value.times}</Text>
-                            <Text style={styles.infoArticleCard}>{value.serving}</Text>
-                            <Text style={styles.infoArticleCard}>{value.difficulty}</Text>
-                        </View> */}
+                                <Image source={{ uri: item.thumb }} style={styles.imageArticleCard} />
+                                <Text style={styles.titleArticleCard}>{item.title}</Text>
 
                             </TouchableOpacity>
                         </View>
-                ))
-            }
+                    )}
+                    estimatedItemSize={50}
+                />
+            )
         } else {
             return <View>
                 {setData([])}
                 <Text>Data Kosong </Text>
-                </View>
+            </View>
         }
     }
 
@@ -80,13 +78,13 @@ export default Search = ({ navigation }) => {
                     }
                     onEndEditing={() => SearchQuery()}
                     returnKeyType="search"
-                    />
+                />
             </View>
 
-            
-            <ScrollView>
+
+            {/* <ScrollView> */}
                 {!data.length && setLoading ? <MengLoading /> : <ReceiptCard />}
-            </ScrollView>
+            {/* </ScrollView> */}
 
             {/* {setLoading ?  : <ReceiptCard />} */}
         </View>
