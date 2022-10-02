@@ -12,6 +12,7 @@ Unofficial app Masak Apa Hari Ini? written in React Native
 
 ## ToDo(s) 
 * [ ] Replace AsyncStorage to mrousavy MMKV Storage
+* [ ] Migrate to React Native Paper for UI
 * [ ] Wishlist (store the receipts locally)
 * [ ] API: Article
 * [x] ~~Replace Built-in FlatList to Shopify FlashList~~
