@@ -41,7 +41,7 @@ export default StyleSheet.create({
     },
     lups: {
         width: '8%',
-        height: '90%',
+        height: '80%',
         marginRight: '3.5%'
     },
     textSearch: {

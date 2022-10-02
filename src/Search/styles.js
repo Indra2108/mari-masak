@@ -8,16 +8,17 @@ export default StyleSheet.create({
         backgroundColor: '#FEFFDE',
     },
     containerLottie: {
+        flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        // backgroundColor: '#94c656',
     },
     lottie: {
         marginBottom: '5%'
     },
     textLottie: {
-        color: 'white',
-        fontFamily: 'Poppins-Regular'
+        fontFamily: 'Poppins-Regular',
+        // color: '#94c656',
+        color: 'black'
     },
     backgroundSearch: {
         paddingHorizontal: '5%',

@@ -1,11 +1,9 @@
 import React, { useEffect, useState, useCallback } from "react";
 import {
     Image,
-    ScrollView,
     Text,
     TouchableOpacity,
     View,
-    RefreshControl,
 } from 'react-native';
 
 // Import styles for styling
@@ -66,7 +64,7 @@ export default Home = ({ navigation }) => {
                         </TouchableOpacity>
                     </View>
                 )}
-                estimatedItemSize={20}
+                estimatedItemSize={10}
             />
         )
     }
@@ -81,7 +79,7 @@ export default Home = ({ navigation }) => {
 
                 <TouchableOpacity style={styles.backgroundSearch} onPress={() => navigation.navigate('Search')}>
                     <Image source={lup} style={styles.lups} />
-                    <Text style={styles.textSearch}>Mau nyari resep apa hari ini?</Text>
+                    <Text style={styles.textSearch}>Mau cari resep apa hari ini?</Text>
                 </TouchableOpacity>
 
                 <ReceiptCard />
