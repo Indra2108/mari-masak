@@ -1,6 +1,9 @@
 # MasakApp
 Unofficial app Masak Apa Hari Ini? written in React Native
 
+## API Docs
+[tomorisakura/unofficial-masakapahariini-api](https://github.com/tomorisakura/unofficial-masakapahariini-api)
+
 ## News
 - `2022`
   - `Oct 01` - Migrate to Shopify FlashList
@@ -15,6 +18,8 @@ Unofficial app Masak Apa Hari Ini? written in React Native
 * [ ] Migrate to React Native Paper for UI
 * [ ] Wishlist (store the receipts locally)
 * [ ] API: Article
+* [ ] Upgrade
+  * [ ] React Native: `0.70` => `0.71`
 * [x] ~~Replace Built-in FlatList to Shopify FlashList~~
 
 Need Performance Tips? [here](optimizeTips.md)
